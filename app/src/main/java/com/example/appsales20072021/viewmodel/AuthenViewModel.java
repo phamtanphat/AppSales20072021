@@ -1,5 +1,7 @@
 package com.example.appsales20072021.viewmodel;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -67,14 +69,14 @@ public class AuthenViewModel extends ViewModel {
 
                         @Override
                         public void onFailure(Call<ApiResponse<UserModel>> call, Throwable t) {
-
+                            Log.d("BBB",t.getMessage());
                         }
                     });
         }
     }
 
 
-    class AuthenViewModelFactory implements ViewModelProvider.Factory {
+    public static class AuthenViewModelFactory implements ViewModelProvider.Factory {
 
         @NonNull
         @Override
