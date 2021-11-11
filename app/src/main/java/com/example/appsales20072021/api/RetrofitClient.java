@@ -1,5 +1,6 @@
 package com.example.appsales20072021.api;
 
+import com.example.appsales20072021.common.AppConstants;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -42,7 +43,7 @@ public class RetrofitClient {
         Retrofit.Builder retrofit = new Retrofit.Builder()
                 .client(okHttpClient)
                 .addConverterFactory(GsonConverterFactory.create(gson))
-                .baseUrl("https://khoapham.vn/");
+                .baseUrl(AppConstants.BASE_URL);
         return retrofit.build();
     }
     public ApiRequest getApiRequest(){
