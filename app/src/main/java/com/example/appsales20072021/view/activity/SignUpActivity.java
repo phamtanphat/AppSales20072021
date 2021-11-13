@@ -5,15 +5,19 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.appsales20072021.R;
 import com.example.appsales20072021.databinding.ActivitySignUpBinding;
 import com.example.appsales20072021.model.ApiResponse;
 import com.example.appsales20072021.model.UserModel;
 import com.example.appsales20072021.repository.AuthenRepository;
 import com.example.appsales20072021.viewmodel.AuthenViewModel;
+
+import java.util.Objects;
 
 public class SignUpActivity extends AppCompatActivity {
 
@@ -24,6 +28,17 @@ public class SignUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         mBinding = ActivitySignUpBinding.inflate(getLayoutInflater());
         setContentView(mBinding.getRoot());
+
+        mBinding.toolbarSignUp.setNavigationIcon(R.drawable.ic_back);
+        mBinding.toolbarSignUp.setTitle("Sign Up");
+        mBinding.toolbarSignUp.setTitleTextColor(Color.WHITE);
+        mBinding.toolbarSignUp.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
         mAuthenViewModel = new ViewModelProvider(this, new AuthenViewModel.AuthenViewModelFactory()).get(AuthenViewModel.class);
         mAuthenViewModel.setAuthenRepository(new AuthenRepository());
 

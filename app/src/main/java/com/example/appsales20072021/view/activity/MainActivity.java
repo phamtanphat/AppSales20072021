@@ -5,6 +5,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -28,6 +29,9 @@ public class MainActivity extends AppCompatActivity {
 
         mAuthenViewModel = new ViewModelProvider(this, new AuthenViewModel.AuthenViewModelFactory()).get(AuthenViewModel.class);
         mAuthenViewModel.setAuthenRepository(new AuthenRepository());
+
+        mBinding.toolbarSignIn.setTitle("Sign In");
+        mBinding.toolbarSignIn.setTitleTextColor(Color.WHITE);
         observerData();
         event();
 

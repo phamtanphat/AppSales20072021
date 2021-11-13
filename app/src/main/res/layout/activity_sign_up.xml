@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".view.activity.SignUpActivity">
 
-    <Toolbar
+    <androidx.appcompat.widget.Toolbar
+        app:contentInsetEnd="10dp"
         android:id="@+id/toolbarSignUp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
