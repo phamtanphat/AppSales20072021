@@ -39,7 +39,7 @@ public class SignUpActivity extends AppCompatActivity {
             }
         });
 
-        mAuthenViewModel = new ViewModelProvider(this, new AuthenViewModel.AuthenViewModelFactory()).get(AuthenViewModel.class);
+        mAuthenViewModel = new ViewModelProvider(this).get(AuthenViewModel.class);
         mAuthenViewModel.setAuthenRepository(new AuthenRepository());
 
         observerData();

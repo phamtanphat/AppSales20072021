@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         mBinding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(mBinding.getRoot());
 
-        mAuthenViewModel = new ViewModelProvider(this, new AuthenViewModel.AuthenViewModelFactory()).get(AuthenViewModel.class);
+        mAuthenViewModel = new ViewModelProvider(this).get(AuthenViewModel.class);
         mAuthenViewModel.setAuthenRepository(new AuthenRepository());
 
         mBinding.toolbarSignIn.setTitle("Sign In");

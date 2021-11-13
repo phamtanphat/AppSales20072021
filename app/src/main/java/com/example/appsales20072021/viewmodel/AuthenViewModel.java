@@ -9,6 +9,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.appsales20072021.base.BaseViewModel;
 import com.example.appsales20072021.model.ApiResponse;
 import com.example.appsales20072021.model.UserModel;
 import com.example.appsales20072021.repository.AuthenRepository;
@@ -22,28 +23,18 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class AuthenViewModel extends ViewModel {
+public class AuthenViewModel extends BaseViewModel {
 
     private AuthenRepository authenRepository;
-    private MutableLiveData<Boolean> loadingLiveData = new MutableLiveData<>();
     private MutableLiveData<ApiResponse<UserModel>> responseUserLiveData = new MutableLiveData<>();
-    private MutableLiveData<Throwable> errorLiveData = new MutableLiveData<>();
 
-    AuthenViewModel() {
 
-    }
+
 
     public void setAuthenRepository(AuthenRepository repository) {
         this.authenRepository = repository;
     }
 
-    public LiveData<Boolean> getLoading() {
-        return loadingLiveData;
-    }
-
-    public LiveData<Throwable> getError() {
-        return errorLiveData;
-    }
 
     public LiveData<ApiResponse<UserModel>> getResult() {
         return responseUserLiveData;
@@ -51,7 +42,7 @@ public class AuthenViewModel extends ViewModel {
 
     public void handleSignIn(String email, String password) {
         if (authenRepository != null) {
-            loadingLiveData.setValue(true);
+            setLoading(true);
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
@@ -66,20 +57,20 @@ public class AuthenViewModel extends ViewModel {
                                         try {
                                             JSONObject jsonObject = new JSONObject(response.errorBody().string());
                                             String message = jsonObject.getString("message");
-                                            errorLiveData.setValue(new Throwable(message));
+                                            setError(new Throwable(message));
                                         } catch (JSONException | IOException e) {
                                             e.printStackTrace();
-                                            errorLiveData.setValue(new Throwable(e.getMessage()));
+                                            setError(new Throwable(e.getMessage()));
                                         }
                                     }
-                                    loadingLiveData.setValue(false);
+                                    setLoading(false);
                                 }
 
                                 @Override
                                 public void onFailure(Call<ApiResponse<UserModel>> call, Throwable t) {
                                     Log.d("BBB", t.getMessage());
-                                    errorLiveData.setValue(t);
-                                    loadingLiveData.setValue(false);
+                                    setError(t);
+                                    setLoading(false);
                                 }
                             });
                 }
@@ -90,7 +81,7 @@ public class AuthenViewModel extends ViewModel {
 
     public void handleSignUp(String email, String password, String fullName , String phone , String address) {
         if (authenRepository != null) {
-            loadingLiveData.setValue(true);
+            setLoading(true);
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
@@ -105,20 +96,19 @@ public class AuthenViewModel extends ViewModel {
                                         try {
                                             JSONObject jsonObject = new JSONObject(response.errorBody().string());
                                             String message = jsonObject.getString("message");
-                                            errorLiveData.setValue(new Throwable(message));
+                                            setError(new Throwable(message));
                                         } catch (JSONException | IOException e) {
                                             e.printStackTrace();
-                                            errorLiveData.setValue(new Throwable(e.getMessage()));
+                                            setError(new Throwable(e.getMessage()));
                                         }
                                     }
-                                    loadingLiveData.setValue(false);
+                                    setLoading(false);
                                 }
 
                                 @Override
                                 public void onFailure(Call<ApiResponse<UserModel>> call, Throwable t) {
-                                    Log.d("BBB", t.getMessage());
-                                    errorLiveData.setValue(t);
-                                    loadingLiveData.setValue(false);
+                                    setError(t);
+                                    setLoading(false);
                                 }
                             });
                 }
@@ -127,16 +117,4 @@ public class AuthenViewModel extends ViewModel {
         }
     }
 
-
-    public static class AuthenViewModelFactory implements ViewModelProvider.Factory {
-
-        @NonNull
-        @Override
-        public <T extends ViewModel> T create(@NonNull Class<T> viewModel) {
-            if (viewModel.isAssignableFrom(ViewModel.class)) {
-                throw new IllegalArgumentException("Error type");
-            }
-            return (T) new AuthenViewModel();
-        }
-    }
 }
