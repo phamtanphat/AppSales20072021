@@ -33,13 +33,14 @@
         android:layout_height="wrap_content"
         app:barrierDirection="bottom"
         app:constraint_referenced_ids="imageViewBannerSignIn" />
+
     <com.google.android.material.textfield.TextInputLayout
-        android:layout_marginHorizontal="10dp"
-        android:layout_marginTop="15dp"
         android:id="@+id/textLayoutEmail"
         style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="15dp"
         android:hint="Email"
         app:boxStrokeWidth="0dp"
         app:boxStrokeWidthFocused="0dp"
@@ -51,88 +52,89 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/textEditEmail"
-            android:maxLines="1"
-            android:imeOptions="actionNext"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:imeOptions="actionNext"
+            android:maxLines="1" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        app:passwordToggleEnabled="true"
-        android:layout_marginHorizontal="10dp"
-        android:layout_marginTop="15dp"
         android:id="@+id/textLayoutPassword"
         style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="15dp"
         android:hint="Password"
         app:boxStrokeWidth="0dp"
         app:boxStrokeWidthFocused="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textLayoutEmail"
+        app:passwordToggleEnabled="true"
         app:startIconDrawable="@drawable/ic_pass"
         app:startIconTint="@null">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/textEditPassword"
-            android:inputType="textPassword"
-            android:maxLines="1"
-            android:imeOptions="actionDone"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:imeOptions="actionDone"
+            android:inputType="textPassword"
+            android:maxLines="1" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/buttonSignIn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_button_blue"
+        android:text="Sign In"
         android:textAllCaps="false"
         android:textColor="@color/white"
-        app:layout_constraintVertical_bias="0.75"
-        android:textStyle="bold"
-        android:text="Sign In"
         android:textSize="15sp"
-        android:id="@+id/buttonSignIn"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="6:1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textLayoutPassword"
-        android:background="@drawable/bg_button_blue"
-        app:layout_constraintDimensionRatio="6:1"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content" />
+        app:layout_constraintVertical_bias="0.75" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        app:layout_constraintVertical_bias="0.85"
-        app:layout_constraintTop_toBottomOf="@id/buttonSignIn"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/buttonSignIn"
+        app:layout_constraintVertical_bias="0.85">
+
         <TextView
-            app:layout_constraintTop_toTopOf="parent"
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Don't have an account"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/textViewSignUp"
             app:layout_constraintStart_toStartOf="parent"
-            android:id="@+id/textView1"
-            android:text="Don't have an account"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            app:layout_constraintTop_toTopOf="parent" />
+
         <TextView
-            app:layout_constraintTop_toTopOf="parent"
+            android:id="@+id/textViewSignUp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sign Up"
+            android:textColor="#F65D52"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/textView1"
-            android:id="@+id/textViewSignUp"
-            android:textColor="#F65D52"
-            android:text="Sign Up"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <include
-        android:visibility="gone"
         android:id="@+id/containerLoading"
-        layout="@layout/layout_loading"/>
-
+        layout="@layout/layout_loading"
+        android:visibility="gone" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
