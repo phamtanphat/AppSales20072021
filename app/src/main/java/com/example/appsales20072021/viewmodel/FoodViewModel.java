@@ -14,6 +14,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -21,25 +22,25 @@ import retrofit2.Response;
 
 public class FoodViewModel extends BaseViewModel {
     private FoodRepository foodRepository;
-    private MutableLiveData<FoodModel> foodsModel = new MutableLiveData<>();
+    private MutableLiveData<List<FoodModel>> foodsModel = new MutableLiveData<>();
 
-    FoodViewModel(){
-        foodRepository = new FoodRepository();
+    public void updateFoodRepository(FoodRepository foodRepository){
+        this.foodRepository = foodRepository;
     }
 
-    public LiveData<FoodModel> getFoodsModel(){
+    public LiveData<List<FoodModel>> getFoodsModel(){
         return foodsModel;
     }
 
 
-    void fetchFoodsModel(){
+    public void fetchFoodsModel(){
         setLoading(true);
         foodRepository.getFoodsModel()
-                .enqueue(new Callback<ApiResponse<FoodModel>>() {
+                .enqueue(new Callback<ApiResponse<List<FoodModel>>>() {
                     @Override
-                    public void onResponse(Call<ApiResponse<FoodModel>> call, Response<ApiResponse<FoodModel>> response) {
+                    public void onResponse(Call<ApiResponse<List<FoodModel>>> call, Response<ApiResponse<List<FoodModel>>> response) {
                         if (response.body() != null) {
-                            ApiResponse<FoodModel> data = response.body();
+                            ApiResponse<List<FoodModel>> data = response.body();
                             foodsModel.setValue(data.getData());
                         } else {
                             try {
@@ -55,7 +56,7 @@ public class FoodViewModel extends BaseViewModel {
                     }
 
                     @Override
-                    public void onFailure(Call<ApiResponse<FoodModel>> call, Throwable t) {
+                    public void onFailure(Call<ApiResponse<List<FoodModel>>> call, Throwable t) {
                         setError(t);
                         setLoading(false);
                     }

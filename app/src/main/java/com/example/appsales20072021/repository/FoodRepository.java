@@ -6,6 +6,8 @@ import com.example.appsales20072021.model.ApiResponse;
 import com.example.appsales20072021.model.FoodModel;
 import com.example.appsales20072021.model.UserModel;
 
+import java.util.List;
+
 import retrofit2.Call;
 
 public class FoodRepository {
@@ -15,7 +17,7 @@ public class FoodRepository {
         apiRequest = RetrofitClient.getInstance().getApiRequest();
     }
 
-    public Call<ApiResponse<FoodModel>> getFoodsModel(){
+    public Call<ApiResponse<List<FoodModel>>> getFoodsModel(){
         return apiRequest.getFoodsModel();
     }
 

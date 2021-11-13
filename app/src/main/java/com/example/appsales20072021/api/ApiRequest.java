@@ -4,6 +4,8 @@ import com.example.appsales20072021.model.ApiResponse;
 import com.example.appsales20072021.model.FoodModel;
 import com.example.appsales20072021.model.UserModel;
 
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -18,5 +20,5 @@ public interface ApiRequest {
     Call<ApiResponse<UserModel>> signUp(@Body UserModel userModel);
 
     @GET("food/list/0/10")
-    Call<ApiResponse<FoodModel>> getFoodsModel();
+    Call<ApiResponse<List<FoodModel>>> getFoodsModel();
 }

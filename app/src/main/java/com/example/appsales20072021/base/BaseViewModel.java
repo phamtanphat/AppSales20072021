@@ -1,14 +1,8 @@
 package com.example.appsales20072021.base;
 
-import android.view.View;
-
-import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
-import androidx.lifecycle.ViewModelProvider;
-
-import com.example.appsales20072021.viewmodel.AuthenViewModel;
 
 public abstract class BaseViewModel extends ViewModel {
 
