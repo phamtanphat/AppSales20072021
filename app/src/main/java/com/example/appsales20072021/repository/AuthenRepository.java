@@ -6,17 +6,20 @@ import com.example.appsales20072021.model.ApiResponse;
 import com.example.appsales20072021.model.UserModel;
 
 import retrofit2.Call;
-import retrofit2.Retrofit;
 
 public class AuthenRepository {
     private ApiRequest apiRequest;
 
-    AuthenRepository(){
+    public AuthenRepository(){
         apiRequest = RetrofitClient.getInstance().getApiRequest();
     }
 
-    public Call<ApiResponse<UserModel>> signIn(String email , String password){
-       return apiRequest.signIn(email,password);
+    public Call<ApiResponse<UserModel>> signIn(UserModel userModel){
+       return apiRequest.signIn(userModel);
+    }
+
+    public Call<ApiResponse<UserModel>> signUp(UserModel userModel){
+        return apiRequest.signUp(userModel);
     }
 
 }
