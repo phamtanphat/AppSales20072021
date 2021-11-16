@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="56dp"
+    android:layout_height="56dp"
+    tools:background="@color/purple_500">
+    <!-- separate view to display ripple/color change when menu item is clicked -->
+    <FrameLayout
+        android:layout_width="@dimen/menu_item_ripple_size"
+        android:layout_height="@dimen/menu_item_ripple_size"
+        android:layout_gravity="center"
+        android:background="?attr/selectableItemBackgroundBorderless"/>
+<!--    Khung dành cho giới hạn của red circle-->
+    <FrameLayout
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_gravity="center">
+
+        <ImageView
+            android:layout_width="@dimen/menu_item_icon_size"
+            android:layout_height="@dimen/menu_item_icon_size"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_baseline_shopping_cart_24"/>
+
+        <FrameLayout
+            android:id="@+id/view_cart_red_circle"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:layout_gravity="top|end"
+            android:background="@drawable/circle_red"
+            android:visibility="gone"
+            tools:visibility="visible">
+
+            <TextView
+                android:id="@+id/view_cart_count_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textAlignment="center"
+                android:includeFontPadding="false"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                tools:text="90" />
+
+        </FrameLayout>
+
+    </FrameLayout>
+</FrameLayout>

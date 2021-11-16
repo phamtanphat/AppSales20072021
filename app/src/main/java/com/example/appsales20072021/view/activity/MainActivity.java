@@ -29,9 +29,10 @@ public class MainActivity extends AppCompatActivity {
 
         mAuthenViewModel = new ViewModelProvider(this).get(AuthenViewModel.class);
         mAuthenViewModel.setAuthenRepository(new AuthenRepository());
+        mAuthenViewModel.setContextAndSession(this);
 
-        mBinding.toolbarSignIn.setTitle("Sign In");
-        mBinding.toolbarSignIn.setTitleTextColor(Color.WHITE);
+//        mBinding.toolbarSignIn.setTitle("Sign In");
+//        mBinding.toolbarSignIn.setTitleTextColor(Color.WHITE);
         observerData();
         event();
 
@@ -66,6 +67,9 @@ public class MainActivity extends AppCompatActivity {
             public void onChanged(ApiResponse<UserModel> userModelApiResponse) {
                 if (userModelApiResponse.getData() != null) {
                     Toast.makeText(MainActivity.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(MainActivity.this,HomeActivity.class);
+                    intent.putExtra("Token",mAuthenViewModel.getSessionManager().fetchAuthToken());
+                    startActivity(intent);
                 }
             }
         });

@@ -7,13 +7,14 @@
     tools:context=".view.activity.SignUpActivity">
 
     <androidx.appcompat.widget.Toolbar
+        app:navigationIcon="@drawable/ic_back"
         app:contentInsetEnd="10dp"
         android:id="@+id/toolbarSignUp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#2296F3"
-        android:title="Sign Up"
-        android:titleTextColor="@color/white"
+        app:title="Sign Up"
+        app:titleTextColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

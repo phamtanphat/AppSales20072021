@@ -1,9 +1,63 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FBF5F5"
+    android:orientation="vertical"
     tools:context=".view.activity.HomeActivity">
+    <androidx.appcompat.widget.Toolbar
+        app:contentInsetEnd="10dp"
+        android:id="@+id/toolbarHome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#2296F3"
+        app:title="Home"
+        app:titleTextColor="@color/white"
+        app:menu="@menu/product_menu"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+<!--    <com.google.android.material.appbar.AppBarLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content">-->
+
+<!--        <com.google.android.material.appbar.MaterialToolbar-->
+<!--            android:id="@+id/toolbarHome"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="?attr/actionBarSize"-->
+<!--            app:title="Home"-->
+<!--            app:menu="@menu/product_menu"-->
+<!--            app:navigationIcon="@drawable/ic_back"-->
+<!--            style="@style/Widget.MaterialComponents.Toolbar.Primary"-->
+<!--            />-->
+
+<!--    </com.google.android.material.appbar.AppBarLayout>-->
+
+<!--    <com.google.android.material.appbar.AppBarLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        style="@style/Widget.MaterialComponents.AppBarLayout.PrimarySurface"-->
+<!--        android:fitsSystemWindows="true">-->
+
+<!--        <com.google.android.material.appbar.MaterialToolbar-->
+<!--            android:id="@+id/toolbarHome"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="?attr/actionBarSize"-->
+<!--            app:title="Home"-->
+<!--            app:navigationIcon="@drawable/ic_back"-->
+<!--            app:menu="@menu/product_menu"-->
+<!--            style="@style/Widget.MaterialComponents.Toolbar.PrimarySurface"-->
+<!--            android:background="@android:color/transparent"-->
+<!--            android:elevation="0dp" />-->
+
+<!--    </com.google.android.material.appbar.AppBarLayout>-->
+
+    <androidx.recyclerview.widget.RecyclerView
+        tools:listitem="@layout/item_food"
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</LinearLayout>

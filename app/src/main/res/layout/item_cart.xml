@@ -20,7 +20,7 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:elevation="5dp"
-            app:layout_constraintDimensionRatio="64:50"
+            app:layout_constraintDimensionRatio="22:18"
             android:layout_width="160dp"
             android:layout_height="0dp">
             <ImageView
@@ -47,6 +47,7 @@
             tools:text="Bún đậu"
             android:layout_width="0dp"
             android:layout_height="wrap_content"/>
+
         <TextView
             android:layout_marginLeft="10dp"
             app:layout_constraintVertical_bias="0.1"
@@ -64,21 +65,48 @@
             tools:text="Giá: 50.000 VNĐ"
             android:layout_width="0dp"
             android:layout_height="wrap_content"/>
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnAdd"
+        <LinearLayout
             app:layout_constraintTop_toBottomOf="@id/textViewPrice"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toRightOf="@id/cardViewImage"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_marginTop="20dp"
             android:layout_marginLeft="10dp"
-            android:background="@drawable/bg_button_conner"
-            android:backgroundTint="#FF5722"
-            android:elevation="5dp"
-            android:text="Add to cart"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:textSize="15sp" />
+            app:layout_constraintVertical_bias="0.5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="left|center_vertical">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnMinus"
+                android:layout_width="70dp"
+                android:layout_height="35dp"
+                android:background="@drawable/bg_button_conner"
+                android:elevation="5dp"
+                android:text="-"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="15sp" />
+            <TextView
+                android:id="@+id/textviewQuantity"
+                android:textColor="@color/black"
+                android:paddingHorizontal="10dp"
+                android:textSize="14sp"
+                tools:text="10"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnPlus"
+                android:layout_width="70dp"
+                android:layout_height="35dp"
+                android:background="@drawable/bg_button_conner"
+                android:elevation="5dp"
+                android:text="+"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="15sp" />
+        </LinearLayout>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

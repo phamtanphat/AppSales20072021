@@ -1,7 +1,10 @@
 package com.example.appsales20072021.api;
 
 import com.example.appsales20072021.model.ApiResponse;
+import com.example.appsales20072021.model.CartModel;
 import com.example.appsales20072021.model.FoodModel;
+import com.example.appsales20072021.model.OrderModel;
+import com.example.appsales20072021.model.OrderedItemModel;
 import com.example.appsales20072021.model.UserModel;
 
 import java.util.List;
@@ -9,6 +12,7 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
 
 public interface ApiRequest {
@@ -21,4 +25,18 @@ public interface ApiRequest {
 
     @GET("food/list/0/10")
     Call<ApiResponse<List<FoodModel>>> getFoodsModel();
+
+    @GET("order/count/shopping-cart")
+    Call<ApiResponse<OrderModel>> totalCountCart(@Header("Authorization") String token);
+
+    @POST("order/add-to-cart")
+    Call<ApiResponse<OrderModel>> addToCart(@Header("Authorization") String token, @Body FoodModel foodModel);
+
+    @GET("order/shopping-cart")
+    Call<ApiResponse<CartModel>> getCart(@Header("Authorization") String token);
+
+    @POST("order/update")
+    Call<ApiResponse<String>> updateCart(@Header("Authorization") String token, @Body OrderedItemModel orderedItemModel);
+
+
 }
