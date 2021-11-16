@@ -10,7 +10,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.appsales20072021.MyApplication;
 import com.example.appsales20072021.R;
+import com.example.appsales20072021.api.RetrofitClient;
 import com.example.appsales20072021.databinding.ActivitySignUpBinding;
 import com.example.appsales20072021.model.ApiResponse;
 import com.example.appsales20072021.model.UserModel;
@@ -40,7 +42,7 @@ public class SignUpActivity extends AppCompatActivity {
         });
 
         mAuthenViewModel = new ViewModelProvider(this).get(AuthenViewModel.class);
-        mAuthenViewModel.setAuthenRepository(new AuthenRepository());
+        mAuthenViewModel.setAuthenRepository(((MyApplication)getApplication()).authenRepository);
 
         observerData();
         event();

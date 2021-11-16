@@ -39,6 +39,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
 //        View view = layoutInflater.inflate(R.layout.item_food,parent,false);
 //        return new FoodViewHolder(view);
         ItemFoodBinding itemFoodBinding = ItemFoodBinding.inflate(layoutInflater,parent,false);
+
         return new FoodViewHolder(itemFoodBinding);
 
     }

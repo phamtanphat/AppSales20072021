@@ -10,6 +10,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.appsales20072021.MyApplication;
+import com.example.appsales20072021.api.RetrofitClient;
 import com.example.appsales20072021.databinding.ActivityMainBinding;
 import com.example.appsales20072021.model.ApiResponse;
 import com.example.appsales20072021.model.UserModel;
@@ -28,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(mBinding.getRoot());
 
         mAuthenViewModel = new ViewModelProvider(this).get(AuthenViewModel.class);
-        mAuthenViewModel.setAuthenRepository(new AuthenRepository());
+        mAuthenViewModel.setAuthenRepository(((MyApplication)getApplication()).authenRepository);
         mAuthenViewModel.setContextAndSession(this);
 
 //        mBinding.toolbarSignIn.setTitle("Sign In");

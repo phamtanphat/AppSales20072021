@@ -100,13 +100,13 @@ public class FoodViewModel extends BaseViewModel {
                 });
     }
 
-    public void fetchTotalCount(String token) {
+    public void fetchTotalCount() {
         if (foodRepository != null) {
             setLoading(true);
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    foodRepository.getTotalCount("Bearer " + token)
+                    foodRepository.getTotalCount()
                             .enqueue(new Callback<ApiResponse<OrderModel>>() {
                                 @Override
                                 public void onResponse(Call<ApiResponse<OrderModel>> call, Response<ApiResponse<OrderModel>> response) {
@@ -141,13 +141,13 @@ public class FoodViewModel extends BaseViewModel {
 
     }
 
-    public void fetchOrderModel(String token, FoodModel foodModel) {
+    public void fetchOrderModel(FoodModel foodModel) {
         if (foodRepository != null) {
             setLoading(true);
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    foodRepository.getOrderModel("Bearer " + token, new FoodModel(foodModel.foodId))
+                    foodRepository.getOrderModel( new FoodModel(foodModel.foodId))
                             .enqueue(new Callback<ApiResponse<OrderModel>>() {
                                 @Override
                                 public void onResponse(Call<ApiResponse<OrderModel>> call, Response<ApiResponse<OrderModel>> response) {
@@ -182,13 +182,13 @@ public class FoodViewModel extends BaseViewModel {
 
     }
 
-    public void fetchCartModel(String token){
+    public void fetchCartModel(){
         if (foodRepository != null) {
             setLoading(true);
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    foodRepository.getCartModel("Bearer " + token)
+                    foodRepository.getCartModel()
                             .enqueue(new Callback<ApiResponse<CartModel>>() {
                                 @Override
                                 public void onResponse(Call<ApiResponse<CartModel>> call, Response<ApiResponse<CartModel>> response) {
@@ -222,13 +222,13 @@ public class FoodViewModel extends BaseViewModel {
         }
     }
 
-    public void fetchUpdateResult(String token, OrderedItemModel orderedItemModel){
+    public void fetchUpdateResult( OrderedItemModel orderedItemModel){
         if (foodRepository != null) {
             setLoading(true);
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    foodRepository.updateCart("Bearer " + token,orderedItemModel)
+                    foodRepository.updateCart(orderedItemModel)
                             .enqueue(new Callback<ApiResponse<String>>() {
                                 @Override
                                 public void onResponse(Call<ApiResponse<String>> call, Response<ApiResponse<String>> response) {

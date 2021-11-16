@@ -11,7 +11,10 @@ public class AuthenRepository {
     private ApiRequest apiRequest;
 
     public AuthenRepository(){
-        apiRequest = RetrofitClient.getInstance().getApiRequest();
+
+    }
+    public void updateRequest(ApiRequest apiRequest){
+        this.apiRequest = apiRequest;
     }
 
     public Call<ApiResponse<UserModel>> signIn(UserModel userModel){

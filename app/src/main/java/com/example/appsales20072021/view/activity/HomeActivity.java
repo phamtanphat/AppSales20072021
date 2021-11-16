@@ -20,7 +20,9 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.appsales20072021.MyApplication;
 import com.example.appsales20072021.R;
+import com.example.appsales20072021.api.RetrofitClient;
 import com.example.appsales20072021.databinding.ActivityHomeBinding;
 import com.example.appsales20072021.model.FoodModel;
 import com.example.appsales20072021.model.OrderModel;
@@ -49,9 +51,6 @@ public class HomeActivity extends AppCompatActivity {
     List<FoodModel> mListFood;
     FoodAdapter mFoodAdapter;
 
-    //Token
-    String token;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,7 +68,7 @@ public class HomeActivity extends AppCompatActivity {
 
         //ViewModel
         mFoodViewModel = new ViewModelProvider(this).get(FoodViewModel.class);
-        mFoodViewModel.updateFoodRepository(new FoodRepository());
+        mFoodViewModel.updateFoodRepository(((MyApplication)getApplication()).foodRepository);
 
         //Recyclerview
         mRcvFood = mBinding.recyclerView;
@@ -80,13 +79,6 @@ public class HomeActivity extends AppCompatActivity {
         mRcvFood.setHasFixedSize(true);
         mRcvFood.setAdapter(mFoodAdapter);
 
-        //Token
-        Intent intent = getIntent();
-        if(intent != null){
-            token = intent.getStringExtra("Token");
-            Log.d("BBB", "Token: " + token);
-        }
-
 
         observerData();
         event();
@@ -96,7 +88,7 @@ public class HomeActivity extends AppCompatActivity {
         //Load data
         mFoodViewModel.fetchFoodsModel();
         //Load TotalCount (số sản phẩm trong cart)
-        mFoodViewModel.fetchTotalCount(token);
+        mFoodViewModel.fetchTotalCount();
 
         //Event khi click Recyclerview
         mFoodAdapter.setOnFoodListener(new FoodAdapter.OnFoodListener() {
@@ -109,7 +101,7 @@ public class HomeActivity extends AppCompatActivity {
                         startActivity(intent);
                         break;
                     case 2: //Click vào nút "Add to cart"
-                        mFoodViewModel.fetchOrderModel(token,mListFood.get(position));
+                        mFoodViewModel.fetchOrderModel(mListFood.get(position));
                         break;
                 }
 
@@ -205,7 +197,6 @@ public class HomeActivity extends AppCompatActivity {
 //                numOfProduct += 1;
 //                updateCartIcon(numOfProduct);
                 Intent intent = new Intent(this, CartActivity.class);
-                intent.putExtra("Token",token);
                 startActivity(intent);
                 return true;
 //            case R.id.favorite:

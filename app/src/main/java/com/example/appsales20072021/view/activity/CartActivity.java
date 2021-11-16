@@ -11,11 +11,14 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.example.appsales20072021.MyApplication;
+import com.example.appsales20072021.api.RetrofitClient;
 import com.example.appsales20072021.databinding.ActivityCartBinding;
 import com.example.appsales20072021.databinding.ActivityHomeBinding;
 import com.example.appsales20072021.model.CartModel;
 import com.example.appsales20072021.model.FoodModel;
 import com.example.appsales20072021.model.OrderedItemModel;
+import com.example.appsales20072021.repository.AuthenRepository;
 import com.example.appsales20072021.repository.FoodRepository;
 import com.example.appsales20072021.view.adapter.CartAdapter;
 import com.example.appsales20072021.view.adapter.FoodAdapter;
@@ -51,7 +54,7 @@ public class CartActivity extends AppCompatActivity {
 
         //ViewModel
         mFoodViewModel = new ViewModelProvider(this).get(FoodViewModel.class);
-        mFoodViewModel.updateFoodRepository(new FoodRepository());
+        mFoodViewModel.updateFoodRepository(((MyApplication)getApplication()).foodRepository);
 
         //Recyclerview
         mRcvCart= mBinding.recyclerView;
@@ -62,12 +65,6 @@ public class CartActivity extends AppCompatActivity {
         mRcvCart.setHasFixedSize(true);
         mRcvCart.setAdapter(mCartAdapter);
 
-        //Token
-        Intent intent = getIntent();
-        if(intent != null){
-            token = intent.getStringExtra("Token");
-            Log.d("BBB", "Token: " + token);
-        }
 
         observerData();
         event();
@@ -76,7 +73,7 @@ public class CartActivity extends AppCompatActivity {
 
     private void event() {
         //Load Cart
-        mFoodViewModel.fetchCartModel(token);
+        mFoodViewModel.fetchCartModel();
 
         //Event khi click Recyclerview
         mCartAdapter.setOnCartListener(new CartAdapter.OnCartListener() {
@@ -91,7 +88,7 @@ public class CartActivity extends AppCompatActivity {
                         orderedItemModel.quantity = mListOrderItemModel.get(position).quantity+1;
                         orderedItemModel.orderId = mListOrderItemModel.get(position).orderId;
                         orderedItemModel.foodId = mListOrderItemModel.get(position).foodId;
-                        mFoodViewModel.fetchUpdateResult(token,orderedItemModel);
+                        mFoodViewModel.fetchUpdateResult(orderedItemModel);
                         break;
                 }
             }
@@ -114,7 +111,7 @@ public class CartActivity extends AppCompatActivity {
             public void onChanged(String s) {
                 if(s!=null) {
                     if (s.equals("OK")){
-                        mFoodViewModel.fetchCartModel(token);
+                        mFoodViewModel.fetchCartModel();
                     }
                 }
             }

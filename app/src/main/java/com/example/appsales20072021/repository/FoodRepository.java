@@ -16,28 +16,28 @@ import retrofit2.Call;
 public class FoodRepository {
     private ApiRequest apiRequest;
 
-    public FoodRepository(){
-        apiRequest = RetrofitClient.getInstance().getApiRequest();
+    public void updateRequest(ApiRequest apiRequest){
+        this.apiRequest = apiRequest;
     }
 
     public Call<ApiResponse<List<FoodModel>>> getFoodsModel(){
         return apiRequest.getFoodsModel();
     }
 
-    public Call<ApiResponse<OrderModel>> getTotalCount(String token){
-        return apiRequest.totalCountCart(token);
+    public Call<ApiResponse<OrderModel>> getTotalCount(){
+        return apiRequest.totalCountCart();
     }
 
-    public Call<ApiResponse<OrderModel>> getOrderModel(String token, FoodModel foodModel){
-        return apiRequest.addToCart(token,foodModel);
+    public Call<ApiResponse<OrderModel>> getOrderModel(FoodModel foodModel){
+        return apiRequest.addToCart(foodModel);
     }
 
-    public Call<ApiResponse<CartModel>> getCartModel(String token){
-        return apiRequest.getCart(token);
+    public Call<ApiResponse<CartModel>> getCartModel(){
+        return apiRequest.getCart();
     }
 
-    public Call<ApiResponse<String>> updateCart(String token, OrderedItemModel orderedItemModel){
-        return apiRequest.updateCart(token,orderedItemModel);
+    public Call<ApiResponse<String>> updateCart(OrderedItemModel orderedItemModel){
+        return apiRequest.updateCart(orderedItemModel);
     }
 
 }

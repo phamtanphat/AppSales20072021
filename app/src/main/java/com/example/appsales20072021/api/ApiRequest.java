@@ -27,16 +27,16 @@ public interface ApiRequest {
     Call<ApiResponse<List<FoodModel>>> getFoodsModel();
 
     @GET("order/count/shopping-cart")
-    Call<ApiResponse<OrderModel>> totalCountCart(@Header("Authorization") String token);
+    Call<ApiResponse<OrderModel>> totalCountCart();
 
     @POST("order/add-to-cart")
-    Call<ApiResponse<OrderModel>> addToCart(@Header("Authorization") String token, @Body FoodModel foodModel);
+    Call<ApiResponse<OrderModel>> addToCart( @Body FoodModel foodModel);
 
     @GET("order/shopping-cart")
-    Call<ApiResponse<CartModel>> getCart(@Header("Authorization") String token);
+    Call<ApiResponse<CartModel>> getCart();
 
     @POST("order/update")
-    Call<ApiResponse<String>> updateCart(@Header("Authorization") String token, @Body OrderedItemModel orderedItemModel);
+    Call<ApiResponse<String>> updateCart( @Body OrderedItemModel orderedItemModel);
 
 
 }
